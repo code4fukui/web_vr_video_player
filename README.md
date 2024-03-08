@@ -54,30 +54,6 @@ Thumbstick:
 
 ## Setup
 
-### Using JSON solution and provided Python scripts
-
-
-
-```sh
-deno run -A generate_files_json.js
-```
-
-Script can set screen type based on file name. Add one of following at the end of file name: `_TB` (Top-Bottom), `_SCREEN`. Default screen type is Side-by-Side.
-
-Supported tags:
-
-`_SCREEN` - normal 2D screen
-
-`_SBS` - Side by Side
-
-`_TB` - Top Bottom 180
-
-`_360` - Top Bottom 360
-
-`_2D_180` - fisheye 180, not VR (one lens)
-
-`_2D_360` - fisheye 360, not VR (one lens)
-
 ### Extensions
 
 [Extensions](https://github.com/michal-repo/web_vr_video_player_extensions)
@@ -108,6 +84,12 @@ FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THU
 `sphere360` - fisheye 360, not VR (one lens)
 
 `screen` - normal 2D screen
+
+### Using JSON solution and provided JavaScript scripts
+
+```sh
+deno run -A generate_files_json.js
+```
 
 ## Troubleshooting
 
