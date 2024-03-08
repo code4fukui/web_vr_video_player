@@ -49,7 +49,6 @@ Thumbstick:
 ## Requirements
 
 - Linux server with installed and configured web server including https (WebXR requires https)
-- Python 3 installed
 - FFMPEG installed (required if thumbnails generator will be used)
 
 ## Setup
@@ -67,7 +66,7 @@ Player is using locally stored JSON file with video sources. It's configured in 
 
 ```
 folder,name,src,thumbnail,screen_type,date,epoch
-FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THUMBNAIL FILE,TYPE OF SCREEN,DATE TIME (Python format: %Y-%m-%d %H:%M:%S),(Python format: %s)
+FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THUMBNAIL FILE,TYPE OF SCREEN,DATE TIME (format: %Y-%m-%d %H:%M:%S),(format: %s)
 ```
 
 #### Screen type
