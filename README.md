@@ -87,7 +87,7 @@ FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THU
 ### Using JSON solution and provided JavaScript scripts
 
 ```sh
-deno run -A generate_files_json.js
+deno run -A makeFiles.js
 ```
 
 ## Troubleshooting
