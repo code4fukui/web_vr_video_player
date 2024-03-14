@@ -23,5 +23,30 @@
         "refresh": "Refresh",
         "close": "Close",
         "sources": "Sources"
+    },
+    "ja": {
+        "parsing_failed": "Failed parsing json file, check console for details.",
+        "no_video_sources": "No video sources defined.",
+        "show_popup_message_error": "Error in showPopupMessage, message must be string",
+        "top_bottom": "Top-Bottom",
+        "top_bottom_360": "Top-Bottom 360",
+        "side_by_side": "Side-By-Side",
+        "zoom_video": "Zoom video",
+        "tilt_video": "Tilt video",
+        "switch_mode": "Switch mode",
+        "not_available": "N/A",
+        "video_not_found": "Video file not found.",
+        "search_in_folders": "Search in folder...",
+        "clear": "クリア",
+        "ascending": "昇順",
+        "descending": "降順",
+        "name": "Name",
+        "date": "Date",
+        "sorting": "ソート",
+        "previous_page": "前ページ",
+        "next_page": "次ページ",
+        "refresh": "再読み込み",
+        "close": "閉じる",
+        "sources": "ソース"
     }
 }
