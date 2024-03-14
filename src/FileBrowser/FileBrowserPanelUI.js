@@ -1623,7 +1623,7 @@ export class FileBrowserPanel {
         this.shouldVerifyVideoSRC = shouldVerifyVideoSRC;
 
         if (files.videos) {
-            this.VIDEOS = files.videos.sort();
+            this.VIDEOS = files.videos.sort((a, b) => a.name.localeCompare(b.name));
             this.FILES = this.VIDEOS[0].list;
             this.FOLDER = 0;
             this.ACTIVEFOLDER = 0;
