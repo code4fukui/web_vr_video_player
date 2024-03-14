@@ -30,8 +30,28 @@
             }
         </style>
 
-        <script defer src="dist/index.js"></script>
-        <script defer src="dist/jsonLoader.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://code4fukui.github.io/three.js/build/three.module.js",
+            "three/addons/": "https://code4fukui.github.io/three.js/examples/jsm/",
+            "three/examples/jsm/": "https://code4fukui.github.io/three.js/examples/jsm/",
+            "three-mesh-ui": "https://unpkg.com/three-mesh-ui@6.5.2/build/three-mesh-ui.module.js",
+            "three-mesh-ui/examples/": "https://felixmariotto.github.io/three-mesh-ui/examples/",
+            "three-mesh-ui/src/": "https://code4fukui.github.io/three-mesh-ui/src/"
+        }
+    }
+    </script>
+    <script defer type="module">
+        import JsonLoader from "./src/JsonLoader.js";
+        
+        try {
+            new JsonLoader("files.json");
+        } catch (error) {
+            console.warn(error);
+        }
+    </script>
+
     </head>
 
     <body>
@@ -73,11 +93,4 @@
             </p>
         </footer>
     </body>
-    <script defer type="module">
-        try {
-            new JsonLoader("files.json");
-        } catch (error) {
-            console.warn(error);
-        }
-    </script>
 </html>

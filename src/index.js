@@ -1,11 +1,16 @@
-import * as THREE from "../node_modules/three/build/three.module.js";
-import { VRButton } from "../node_modules/three/examples/jsm/webxr/VRButton.js";
-import { OrbitControls } from "../node_modules/three/examples/jsm/controls/OrbitControls.js";
+//import * as THREE from "../node_modules/three/build/three.module.js";
+import * as THREE from "three";
+import { VRButton } from "three/addons/webxr/VRButton.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
-import WebGL from "../node_modules/three/examples/jsm/capabilities/WebGL.js";
+import WebGL from "three/addons/capabilities/WebGL.js";
 
-import ThreeMeshUI from "../node_modules/three-mesh-ui/build/three-mesh-ui.module.js";
-import VRControl from "../node_modules/three-mesh-ui/examples/utils/VRControl.js";
+//import ThreeMeshUI from "../node_modules/three-mesh-ui/build/three-mesh-ui.module.js";
+import ThreeMeshUI from "three-mesh-ui";
+//import VRControl from "../node_modules/three-mesh-ui/examples/utils/VRControl.js";
+//import VRControl from "three-mesh-ui/examples/utils/VRControl.js";
+//import VRControl from "three-mesh-ui/examples/utils/VRControl.js";
+import VRControl from "https://code4fukui.github.io/three-mesh-ui/examples/utils/VRControl.js"
 
 import { PlayerPanel } from "./PlayerPanelUI.js";
 import { FileBrowserPanel } from "./FileBrowser/FileBrowserPanelUI.js";
@@ -45,8 +50,15 @@ export let sourcesSelectorPanel;
 export let camToSave = {};
 
 let popupMessage, popupContainer;
-import FontJSON from "../assets/fonts/Roboto-Regular-msdf.json";
-import FontImage from "../assets/fonts/Roboto-Regular.png";
+//import FontJSON from "../assets/fonts/Roboto-Regular-msdf.json";
+//import FontImage from "../assets/fonts/Roboto-Regular.png";
+
+import { loadResources } from "./loadResources.js";
+
+await loadResources({
+    FontJSON: "../assets/fonts/Roboto-Regular-msdf.json",
+    FontImage: "../assets/fonts/Roboto-Regular.png",
+});
 
 export let hiddenSphere;
 const CAMERAPOSITIONY = 1.6;
@@ -824,9 +836,13 @@ export function scaleScreenMesh(x_scale) {
 
 if (WebGL.isWebGLAvailable()) {
     window.addEventListener("resize", onWindowResize);
+    /*
     window.addEventListener("load", () => {
         init();
     });
+    */
+    //window.onload = () => init();
+    //init();
 } else {
     const warning = WebGL.getWebGLErrorMessage();
     document.body.appendChild(warning);
@@ -837,3 +853,5 @@ export let Extensions = { registered: [] };
 export default function registerExtension(name) {
     Extensions.registered.push(name);
 }
+
+init();

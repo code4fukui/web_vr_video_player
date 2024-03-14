@@ -1,3 +1,5 @@
+import registerExtension from "./index.js";
+
 export default class JsonLoader {
     data;
     verifyVideoSRC;
@@ -10,7 +12,7 @@ export default class JsonLoader {
             fetch(json_file)
                 .then((response) => response.json())
                 .then((json) => {
-                    window.registerExtension({
+                    registerExtension({
                         type: "json_file",
                         name: this.name,
                         verifyVideoSRC: this.verifyVideoSRC,

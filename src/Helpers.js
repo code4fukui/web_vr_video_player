@@ -1,6 +1,9 @@
+import { loadResources } from "./loadResources.js";
+
 let video_src = document.getElementById("video_src");
 
-const LANG = require("./lang.json");
+//const LANG = require("./lang.json");
+await loadResources({ LANG: "./src/lang.json" });
 
 let selected_lang = "en";
 

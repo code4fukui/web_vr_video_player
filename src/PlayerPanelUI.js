@@ -1,15 +1,12 @@
 import {
     Color,
     TextureLoader,
-} from "../node_modules/three/build/three.module.js";
+} from "three";
 import {
     Block,
     Text,
     InlineBlock,
-} from "../node_modules/three-mesh-ui/build/three-mesh-ui.module.js";
-
-import FontJSON from "../assets/fonts/Roboto-Regular-msdf.json";
-import FontImage from "../assets/fonts/Roboto-Regular.png";
+} from "three-mesh-ui";
 
 import * as MAIN from "./index.js";
 
@@ -20,6 +17,32 @@ import * as UI from "./UI.js";
 import * as Helpers from "./Helpers.js";
 
 // Import Icons
+import { loadResources } from "./loadResources.js";
+
+await loadResources({
+  FontJSON: "../assets/fonts/Roboto-Regular-msdf.json",
+  FontImage: "../assets/fonts/Roboto-Regular.png",
+  PlayIcon: "../assets/icons/play.png",
+  PauseIcon: "../assets/icons/pause.png",
+  StopIcon: "../assets/icons/stop.png",
+  FFIcon: "../assets/icons/fast-forward.png",
+  RewIcon: "../assets/icons/rewind.png",
+  MuteIcon: "../assets/icons/mute.png",
+  VolumeIcon: "../assets/icons/volume.png",
+  ExitIcon: "../assets/icons/logout.png",
+  CloseIcon: "../assets/icons/close.png",
+  SettingsIcon: "../assets/icons/setting.png",
+  ZoomOutIcon: "../assets/icons/zoom-out.png",
+  ZoomInIcon: "../assets/icons/zoom-in.png",
+  UpIcon: "../assets/icons/up-arrow.png",
+  DownIcon: "../assets/icons/down-arrow.png",
+  VRIcon: "../assets/icons/vr-glasses.png",
+  WideScreenIcon: "../assets/icons/wide.png",
+  ResetIcon: "../assets/icons/reset.png",
+  FullScreenIcon: "../assets/icons/fullscreen.png",
+});
+
+/*
 import PlayIcon from "../assets/icons/play.png";
 import PauseIcon from "../assets/icons/pause.png";
 import StopIcon from "../assets/icons/stop.png";
@@ -38,6 +61,7 @@ import VRIcon from "../assets/icons/vr-glasses.png";
 import WideScreenIcon from "../assets/icons/wide.png";
 import ResetIcon from "../assets/icons/reset.png";
 import FullScreenIcon from "../assets/icons/fullscreen.png";
+*/
 
 export class PlayerPanel {
     playMenuContainer;

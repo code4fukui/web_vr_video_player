@@ -1,13 +1,20 @@
-import { Color } from "../node_modules/three/build/three.module.js";
+import { Color } from "three";
 import {
     Block,
     Text,
-} from "../node_modules/three-mesh-ui/build/three-mesh-ui.module.js";
+} from "three-mesh-ui";
 
-import deepDelete from "../node_modules/three-mesh-ui/src/utils/deepDelete.js";
+import deepDelete from "three-mesh-ui/src/utils/deepDelete.js";
 
+/*
 import FontJSON from "../assets/fonts/Roboto-Regular-msdf.json";
 import FontImage from "../assets/fonts/Roboto-Regular.png";
+*/
+import { loadResources } from "./loadResources.js";
+await loadResources({
+    FontJSON: "../assets/fonts/Roboto-Regular-msdf.json",
+    FontImage: "../assets/fonts/Roboto-Regular.png",
+});
 
 import { fileBrowserPanel, scene } from "./index.js";
 import { hideMenu, showMenu, registerNewObjectsToTest } from "./UI.js";

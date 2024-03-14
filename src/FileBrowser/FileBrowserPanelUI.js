@@ -6,24 +6,43 @@ import {
     DoubleSide,
     Mesh,
     CircleGeometry,
-} from "../../node_modules/three/build/three.module.js";
+} from "three";
 import {
     Block,
     Text,
     InlineBlock,
     Keyboard,
-} from "../../node_modules/three-mesh-ui/build/three-mesh-ui.module.js";
+} from "three-mesh-ui";
 
 import ThumbnailBlock from "./ThumbnailBlock.js";
+import deepDelete from "three-mesh-ui/src/utils/deepDelete.js";
 
+import { loadResources } from "../loadResources.js";
+
+await loadResources({
+    /*
+    Backspace: "../../node_modules/three-mesh-ui/examples/assets/backspace.png",
+    Enter: "../../node_modules/three-mesh-ui/examples/assets/enter.png",
+    Shift: "../../node_modules/three-mesh-ui/examples/assets/shift.png",
+    */
+    Backspace: "https://code4fukui.github.io/three-mesh-ui/examples/assets/backspace.png",
+    Enter: "https://code4fukui.github.io/three-mesh-ui/examples/assets/enter.png",
+    Shift: "https://code4fukui.github.io/three-mesh-ui/examples/assets/shift.png",
+
+    FontJSON: "../../assets/fonts/Roboto-Regular-msdf.json",
+    FontImage: "../../assets/fonts/Roboto-Regular.png",
+    LeftIcon: "../../assets/icons/left-arrow.png",
+    RightIcon: "../../assets/icons/right-arrow.png",
+    VideoIcon: "../../assets/icons/video.png",
+});
+
+/*
 import Backspace from "../../node_modules/three-mesh-ui/examples/assets/backspace.png";
 import Enter from "../../node_modules/three-mesh-ui/examples/assets/enter.png";
 import Shift from "../../node_modules/three-mesh-ui/examples/assets/shift.png";
-
-import deepDelete from "../../node_modules/three-mesh-ui/src/utils/deepDelete.js";
-
 import FontJSON from "../../assets/fonts/Roboto-Regular-msdf.json";
 import FontImage from "../../assets/fonts/Roboto-Regular.png";
+*/
 
 import * as MAIN from "../index.js";
 
@@ -33,10 +52,6 @@ import * as Helpers from "../Helpers.js";
 
 import * as ScreenManager from "../ScreenManager/ScreenManager.js";
 
-// Import Icons
-import LeftIcon from "../../assets/icons/left-arrow.png";
-import RightIcon from "../../assets/icons/right-arrow.png";
-import VideoIcon from "../../assets/icons/video.png";
 
 export class FileBrowserPanel {
     fileBrowserContainer;
@@ -1405,6 +1420,8 @@ export class FileBrowserPanel {
             [],
             true
         );
+        //console.log(screen_type);
+        //screen_type = "screen"
         MAIN.playbackChange(true, screen_type);
     }
 
