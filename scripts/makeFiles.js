@@ -15,7 +15,7 @@ const getType = (fn) => {
   return null;
 };
 
-const path = "videos/";
+const path = "./videos/";
 const fns = await dir2array(path);
 const list = [];
 for (const fn0 of fns) {
@@ -38,5 +38,5 @@ for (const fn0 of fns) {
     epoch: time,
   });
 }
-await Deno.writeTextFile("files.csv", CSV.stringify(list));
+await Deno.writeTextFile("./files.csv", CSV.stringify(list));
 await csv2json();
