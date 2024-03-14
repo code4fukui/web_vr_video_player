@@ -5,7 +5,7 @@ let video_src = document.getElementById("video_src");
 //const LANG = require("./lang.json");
 await loadResources({ LANG: "./src/lang.json" });
 
-let selected_lang = "en";
+let selected_lang = navigator.language;
 
 export function videoSrcExists() {
     if (
@@ -54,5 +54,16 @@ export function testIfFileExist(url) {
 }
 
 export function getWordFromLang(key) {
-    return LANG[selected_lang][key];
+    const lang1 = LANG[selected_lang];
+    if (lang1 && lang1[key]) {
+        return lang1[key];
+    }
+    const slang2 = selected_lang.substring(0, selected_lang.indexOf("_"));
+    if (slang2 != selected_lang) {
+        const lang2 = LANG[slang2];
+        if (lang2 && lang2[key]) {
+            return lang2[key];
+        }
+    }
+    return LANG["en"][key];
 }
