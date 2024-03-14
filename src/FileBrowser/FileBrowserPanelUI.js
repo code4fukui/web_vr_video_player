@@ -29,11 +29,11 @@ await loadResources({
     Enter: "https://code4fukui.github.io/three-mesh-ui/examples/assets/enter.png",
     Shift: "https://code4fukui.github.io/three-mesh-ui/examples/assets/shift.png",
 
-    FontJSON: "../../assets/fonts/Roboto-Regular-msdf.json",
-    FontImage: "../../assets/fonts/Roboto-Regular.png",
-    LeftIcon: "../../assets/icons/left-arrow.png",
-    RightIcon: "../../assets/icons/right-arrow.png",
-    VideoIcon: "../../assets/icons/video.png",
+    FontJSON: "./assets/fonts/Roboto-Regular-msdf.json",
+    FontImage: "./assets/fonts/Roboto-Regular.png",
+    LeftIcon: "./assets/icons/left-arrow.png",
+    RightIcon: "./assets/icons/right-arrow.png",
+    VideoIcon: "./assets/icons/video.png",
 });
 
 /*

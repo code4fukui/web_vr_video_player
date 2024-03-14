@@ -56,8 +56,8 @@ let popupMessage, popupContainer;
 import { loadResources } from "./loadResources.js";
 
 await loadResources({
-    FontJSON: "../assets/fonts/Roboto-Regular-msdf.json",
-    FontImage: "../assets/fonts/Roboto-Regular.png",
+    FontJSON: "./assets/fonts/Roboto-Regular-msdf.json",
+    FontImage: "./assets/fonts/Roboto-Regular.png",
 });
 
 export let hiddenSphere;
