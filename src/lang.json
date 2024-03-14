@@ -37,16 +37,16 @@
         "not_available": "N/A",
         "video_not_found": "Video file not found.",
         "search_in_folders": "Search in folder...",
-        "clear": "クリア",
-        "ascending": "昇順",
-        "descending": "降順",
-        "name": "Name",
-        "date": "Date",
-        "sorting": "ソート",
-        "previous_page": "前ページ",
-        "next_page": "次ページ",
-        "refresh": "再読み込み",
-        "close": "閉じる",
-        "sources": "ソース"
+        "clear": "CLEAR",
+        "ascending": "ASC",
+        "descending": "DESC",
+        "name": "NAME",
+        "date": "DATE",
+        "sorting": "SORT",
+        "previous_page": "PREV",
+        "next_page": "NEXT",
+        "refresh": "RELOAD",
+        "close": "CLOSE",
+        "sources": "SRC"
     }
 }
