@@ -71,10 +71,7 @@ class MeshPanel extends Panel {
     }
 
     switch2d3d(switch_2d_or_3d, VRMode) {
-        if (
-            (this.mode === switch_2d_or_3d && this.screen_type === VRMode) ||
-            (this.screen_type === VRMode && this.eye === "left")
-        ) {
+        if (this.screen_type === VRMode && this.mode === switch_2d_or_3d) { //} && this.eye === "left") {
             MAIN[this.ui_name].visible = true;
         } else {
             MAIN[this.ui_name].visible = false;

@@ -14,7 +14,7 @@ export function hideMenu(
     shouldSwitch2d3d = false
 ) {
     if (shouldSwitch2d3d) {
-        ScreenManager.switch2d3d("3d");
+        //ScreenManager.switch2d3d("3d");
     }
     if (menuContainer.constructor === Array) {
         menuContainer.forEach((element) => {
@@ -40,7 +40,7 @@ export function showMenu(
     shouldSwitch2d3d = false
 ) {
     if (shouldSwitch2d3d) {
-        ScreenManager.switch2d3d("2d");
+        //ScreenManager.switch2d3d("2d");
     }
     if (menuContainer.constructor === Array) {
         menuContainer.forEach((element) => {

@@ -1058,7 +1058,7 @@ export class FileBrowserPanel {
                     endOfFiles = true;
                     break;
                 }
-
+                
                 const thumb = new ThumbnailBlock(
                     this.thumbButtonContainerAttributes,
                     this.FILES[iterate].src,
@@ -1072,7 +1072,7 @@ export class FileBrowserPanel {
                         ? this.FILES[iterate].frame_height
                         : "1",
                     this.FILES[iterate].frame_width
-                        ? this.FILES[iterate].frame_width
+                        ? this.FILES[iterate].frame_width * (this.FILES[iterate].mode == "3d" ? .5 : 1)
                         : "1",
                     this.selectedAttributes,
                     this.hoveredStateAttributes,
