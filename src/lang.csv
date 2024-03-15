@@ -1,0 +1,24 @@
+﻿key,en,ja
+parsing_failed,"Failed parsing json file, check console for details.","Failed parsing json file, check console for details."
+no_video_sources,No video sources defined.,No video sources defined.
+show_popup_message_error,"Error in showPopupMessage, message must be string","Error in showPopupMessage, message must be string"
+top_bottom,Top-Bottom,Top-Bottom
+top_bottom_360,Top-Bottom 360,Top-Bottom 360
+side_by_side,Side-By-Side,Side-By-Side
+zoom_video,Zoom video,Zoom video
+tilt_video,Tilt video,Tilt video
+switch_mode,Switch mode,Switch mode
+not_available,N/A,N/A
+video_not_found,Video file not found.,Video file not found.
+search_in_folders,Search in folder...,Search in folder...
+clear,Clear,CLEAR
+ascending,ASC,ASC
+descending,DESC,DESC
+name,Name,NAME
+date,Date,DATE
+sorting,Sorting,SORT
+previous_page,Previous Page,PREV
+next_page,Next Page,NEXT
+refresh,Refresh,RELOAD
+close,Close,CLOSE
+sources,Sources,SRC
