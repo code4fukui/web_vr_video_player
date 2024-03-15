@@ -1068,6 +1068,7 @@ export class FileBrowserPanel {
                     ),
                     this.FILES[iterate].thumbnail,
                     this.FILES[iterate].screen_type,
+                    this.FILES[iterate].mode,
                     this.FILES[iterate].frame_height
                         ? this.FILES[iterate].frame_height
                         : "1",
@@ -1406,7 +1407,7 @@ export class FileBrowserPanel {
         MAIN.playbackChange(false);
     }
 
-    hideFileMenuPanel(screen_type = null) {
+    hideFileMenuPanel(screen_type = null, mode) {
         UI.hideMenu(
             [
                 this.fileBrowserContainer,
@@ -1422,7 +1423,7 @@ export class FileBrowserPanel {
         );
         //console.log(screen_type);
         //screen_type = "screen"
-        MAIN.playbackChange(true, screen_type);
+        MAIN.playbackChange(true, screen_type, mode);
     }
 
     searchTextSetContent(target, newContent) {
