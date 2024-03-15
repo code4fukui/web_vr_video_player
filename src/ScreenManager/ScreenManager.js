@@ -87,6 +87,7 @@ export function zoom(in_or_out, step = 10) {
                 temp.applyEuler(MAIN.meshes[mesh].rotation);
                 MAIN.meshes[mesh].position.copy(temp);
             } else {
+                console.log(mesh);
                 const temp = panels.meshes.panels.find(
                     (element) => element.ui_name === mesh
                 ).position.clone();
