@@ -2,7 +2,7 @@ import * as MAIN from "../index.js";
 import PanelsList from "./Panels.js";
 
 let isVRModeUsed = true;
-export let VRMode = "sbs";
+export let VRMode = "screen"; // "sbs"
 let currently_3d = true;
 export let force_2d_mode = false;
 export let currentZoom = 0;
@@ -125,13 +125,16 @@ export function tilt(up_or_down) {
 // Switch between VR and Screen mode
 
 export function switchModeVRScreen(vr_or_screen) {
+    /*
     if (!currently_3d) {
         switch2d3d("3d", true);
     }
+    */
     panels.meshes.panels.forEach((mesh) => {
         mesh.switchModeVRScreen(vr_or_screen);
     });
     switch (vr_or_screen) {
+        /*
         case "vr":
         case "sbs":
             isVRModeUsed = true;
@@ -145,6 +148,7 @@ export function switchModeVRScreen(vr_or_screen) {
             isVRModeUsed = true;
             VRMode = "360";
             break;
+            */
         case "sphere180":
             VRMode = "sphere180";
             isVRModeUsed = false;
@@ -154,6 +158,7 @@ export function switchModeVRScreen(vr_or_screen) {
             isVRModeUsed = false;
             break;
         case "screen":
+            VRMode = "screen";
             isVRModeUsed = false;
             break;
     }
@@ -163,7 +168,8 @@ export function switchModeVRScreen(vr_or_screen) {
 // Switch between 2D and 3D mode
 
 export function switch2d3d(switch_2d_or_3d, forced = false) {
-    if (isVRModeUsed && (!force_2d_mode || forced)) {
+    //if (isVRModeUsed && (!force_2d_mode || forced)) {
+    //if (!force_2d_mode || forced) {
         panels.meshes.panels.forEach((mesh) => {
             mesh.switch2d3d(switch_2d_or_3d, VRMode);
         });
@@ -175,7 +181,7 @@ export function switch2d3d(switch_2d_or_3d, forced = false) {
                 currently_3d = true;
                 break;
         }
-    }
+    //}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

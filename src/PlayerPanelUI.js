@@ -712,6 +712,7 @@ export class PlayerPanel {
         const tiltDownButton = new Block(this.buttonOptions);
         const tiltResetButton = new Block(this.buttonOptions);
         const VRModeButton = new Block(this.buttonOptions);
+        const VR360ModeButton = new Block(this.buttonOptions);
         const ScreenModeButton = new Block(this.buttonOptions);
         const VR2DModeButton = new Block(this.buttonOptions);
         const VRSBSTBModeButton = new Block(this.biggerButtonOptions);
@@ -774,6 +775,7 @@ export class PlayerPanel {
 
         this.loader.load(VRIcon, (texture) => {
             VRModeButton.add(new InlineBlock(this.textureAttributes(texture)));
+            VR360ModeButton.add(new InlineBlock(this.textureAttributes(texture)));
         });
 
         this.loader.load(WideScreenIcon, (texture) => {
@@ -856,11 +858,21 @@ export class PlayerPanel {
             state: "selected",
             attributes: this.selectedAttributes,
             onSet: () => {
-                ScreenManager.switchModeVRScreen(ScreenManager.VRMode);
+                ScreenManager.switchModeVRScreen("sphere180");
             },
         });
         VRModeButton.setupState(this.hoveredState);
         VRModeButton.setupState(this.idleState);
+
+        VR360ModeButton.setupState({
+            state: "selected",
+            attributes: this.selectedAttributes,
+            onSet: () => {
+                ScreenManager.switchModeVRScreen("sphere360");
+            },
+        });
+        VR360ModeButton.setupState(this.hoveredState);
+        VR360ModeButton.setupState(this.idleState);
 
         ScreenModeButton.setupState({
             state: "selected",
@@ -878,9 +890,11 @@ export class PlayerPanel {
             onSet: () => {
                 if (ScreenManager.force_2d_mode) {
                     ScreenManager.force2DMode(false);
+                    ScreenManager.switch2d3d("3d", true);
                     this.VR2DModeButtonText.set({ content: "3D" });
                 } else {
                     ScreenManager.force2DMode(true);
+                    ScreenManager.switch2d3d("2d", true);
                     this.VR2DModeButtonText.set({ content: "2D" });
                 }
             },
@@ -888,10 +902,33 @@ export class PlayerPanel {
         VR2DModeButton.setupState(this.hoveredState);
         VR2DModeButton.setupState(this.idleState);
 
-        VRSBSTBModeButton.setupState({
+        VRSBSTBModeButton.setupState({ // sbs or 2d
             state: "selected",
             attributes: this.selectedAttributes,
             onSet: () => {
+                if (ScreenManager.VRMode === "sbs") {
+                    ScreenManager.switchModeVRScreen("screen");
+                    this.VRSBSTBModeButtonText.set({
+                        content: Helpers.getWordFromLang("screen"),
+                    });
+                } else if (ScreenManager.VRMode === "tb") {
+                    ScreenManager.switchModeVRScreen("360");
+                    this.VRSBSTBModeButtonText.set({
+                        content: Helpers.getWordFromLang("top_bottom_360"),
+                    });
+                } else if (ScreenManager.VRMode === "360") {
+                    ScreenManager.switchModeVRScreen("sphere180");
+                    this.VRSBSTBModeButtonText.set({ content: "2D 180" });
+                } else if (ScreenManager.VRMode === "sphere180") {
+                    ScreenManager.switchModeVRScreen("sphere360");
+                    this.VRSBSTBModeButtonText.set({ content: "2D 360" });
+                } else if (ScreenManager.VRMode === "sphere360") {
+                    ScreenManager.switchModeVRScreen("sbs");
+                    this.VRSBSTBModeButtonText.set({
+                        content: Helpers.getWordFromLang("side_by_side"),
+                    });
+                }
+                /*
                 if (ScreenManager.VRMode === "sbs") {
                     ScreenManager.switchModeVRScreen("tb");
                     this.VRSBSTBModeButtonText.set({
@@ -914,6 +951,7 @@ export class PlayerPanel {
                         content: Helpers.getWordFromLang("side_by_side"),
                     });
                 }
+                */
             },
         });
         VRSBSTBModeButton.setupState(this.hoveredState);
@@ -958,8 +996,9 @@ export class PlayerPanel {
             modeLabel,
             ScreenModeButton,
             VRModeButton,
+            VR360ModeButton,
             VR2DModeButton,
-            VRSBSTBModeButton
+            //VRSBSTBModeButton
         );
         this.settingsMenuContainer.add(
             settingsMenuTopBar,
@@ -977,8 +1016,9 @@ export class PlayerPanel {
             tiltResetButton,
             ScreenModeButton,
             VRModeButton,
+            VR360ModeButton,
             VR2DModeButton,
-            VRSBSTBModeButton,
+            //VRSBSTBModeButton,
             settingsButton,
             this.settingsMenuContainer,
             this.playMenuContainer,
@@ -1098,11 +1138,12 @@ export class PlayerPanel {
 
     ExitToMain() {
         this.hidePlayMenuPanel();
-        ScreenManager.force2DMode(false);
+        /*ScreenManager.force2DMode(false);
         this.VR2DModeButtonText.set({ content: "3D" });
         this.VRSBSTBModeButtonText.set({
             content: Helpers.getWordFromLang("side_by_side"),
         });
+        */
         ScreenManager.resetPosition("playMenuPanel");
         ScreenManager.resetPosition("meshes");
         MAIN.fileBrowserPanel.showFileMenuPanel();

@@ -10,5 +10,5 @@ export const csv2json = async () => {
     delete o.folder;
     return o;
   })}))}
-  await Deno.writeTextFile("files.json", JSON.stringify(json, null, 2));
+  await Deno.writeTextFile("./files.json", JSON.stringify(json, null, 2));
 };
