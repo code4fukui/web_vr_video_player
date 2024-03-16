@@ -20,7 +20,7 @@ export function videoSrcExists() {
 export function setVideoSrc(src) {
     video_src.setAttribute("src", src);
     video_src.setAttribute("type", "video/mp4");
-    let video = document.getElementById("video");
+    const video = document.getElementById("video");
     video.load();
     video.play().catch((e) => {
         console.warn(e);
