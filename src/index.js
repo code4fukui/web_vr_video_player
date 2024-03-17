@@ -42,7 +42,7 @@ export let scene,
     meshes,
     meshLeft360,
     meshRight360,
-    mesh2d360,
+    //mesh2d360,
     mesh1802D,
     mesh3602D;
 export let clickedButton = undefined;
@@ -280,13 +280,6 @@ function init() {
     meshLeft360.position.setZ(-120);
     scene.add(meshLeft360);
 
-    // mesh for 2d mode
-
-    mesh2d360 = meshLeft360.clone();
-    mesh2d360.layers.set(2);
-    mesh2d360.visible = false;
-    scene.add(mesh2d360);
-
     //// right eye
     // SBS
     const uvsRightSBS = geometryRightSBS.attributes.uv.array;
@@ -414,16 +407,6 @@ function init() {
         "sphere360",
         "right"
     );
-    /*
-    ScreenManager.registerMeshPanel(
-        mesh2d360,
-        "mesh2d360",
-        "mesh2d360",
-        "2d",
-        "sphere360",
-        "both"
-    );
-    */
     ScreenManager.registerMeshPanel(
         mesh1802D,
         "mesh1802D",
@@ -467,7 +450,7 @@ function init() {
         meshRightScreen: meshRightScreen,
         meshLeft360: meshLeft360,
         meshRight360: meshRight360,
-        mesh2d360: mesh2d360,
+        //mesh2d360: mesh2d360,
         mesh1802D: mesh1802D,
         mesh3602D: mesh3602D,
     };
