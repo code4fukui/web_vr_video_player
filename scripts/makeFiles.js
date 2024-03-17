@@ -75,7 +75,7 @@ for (const fn0 of fns) {
     if (!await existsFile(fnthumb)) {
       const imgdata = JPEG.decode(jpg, { maxResolutionInMP: 1000, maxMemoryUsageInMB: 1000 });
 
-      const imgdata2 = resizeImageData(imgdata, 320);
+      const imgdata2 = resizeImageData(imgdata, 320, mode == "3d");
       const jpg2 = JPEG.encode(imgdata2, 90);
       await Deno.writeFile(fnthumb, jpg2);
       size = { width: imgdata.width, height: imgdata.height };
