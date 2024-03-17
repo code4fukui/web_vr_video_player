@@ -62,7 +62,7 @@ for (const fn0 of fns) {
       frame_width: info.size.width,
       frame_height: info.size.height,
       date: date,
-      epoch: info.duration,
+      duration: info.duration,
     });
   } else if (ext.endsWith(".jpg")) {
     console.log("image", fn);
@@ -95,7 +95,7 @@ for (const fn0 of fns) {
       frame_width: size.width,
       frame_height: size.height,
       date: date,
-      epoch: 0,
+      duration: 0,
     });
   }
 }

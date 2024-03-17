@@ -1173,14 +1173,15 @@ export class FileBrowserPanel {
     sortFiles(by, order) {
         switch (by) {
             case "date":
+                const epoch = (a) => new Date(a.date).getTime();
                 switch (order) {
                     case "desc":
-                        this.FILES.sort((a, b) => b.epoch - a.epoch);
+                        this.FILES.sort((a, b) => epoch(b) - epoch(a));
                         break;
 
                     default:
                     case "asc":
-                        this.FILES.sort((a, b) => a.epoch - b.epoch);
+                        this.FILES.sort((a, b) => epoch(a) - epoch(b));
                         break;
                 }
                 break;

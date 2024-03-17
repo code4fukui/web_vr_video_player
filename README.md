@@ -63,8 +63,8 @@ Player is using locally stored JSON file with video sources.
 ### Structure for CSV file
 
 ```
-folder,name,src,thumbnail,screen_type,date,epoch
-FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THUMBNAIL FILE,TYPE OF SCREEN,DATE TIME (format: %Y-%m-%d %H:%M:%S),(format: %s)
+folder,name,src,thumbnail,screen_type,mode,frame_width,frame_height,date,duration
+FOLDER_NAME,FILE NAME DISPLAYED IN UI,SOURCE URL TO VIDEO FILE,SOURCE URL TO THUMBNAIL FILE,TYPE OF SCREEN,2D or 3D,DATE TIME (format: %Y-%m-%d %H:%M:%S),DURATION (format: %s)
 ```
 
 #### Screen type
