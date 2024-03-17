@@ -1196,6 +1196,7 @@ export class PlayerPanel {
                     if (this.videoCantEndBug) {
                         if (loopmode) {
                             MAIN.video.currentTime = 0;
+                            MAIN.video.play();
                         } else {
                             MAIN.video.pause();
                             MAIN.video.currentTime += 10;
