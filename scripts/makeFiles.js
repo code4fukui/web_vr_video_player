@@ -6,6 +6,8 @@ import { getFileCreated } from "./getFileCreated.js";
 import { csv2json } from "./csv2json.js";
 import { JPEG } from "https://code4fukui.github.io/JPEG/JPEG.js";
 import { resizeImageData } from "./resizeImageData.js";
+import { existsFile } from "./existsFile.js";
+import { EXIF } from "https://taisukef.github.io/exif-js/EXIF.js";
 
 const typemodes = {
   "sbs": { type: "screen", mode: "3d" },
@@ -67,12 +69,20 @@ for (const fn0 of fns) {
     const { type, mode } = getTypeMode(fn);
     const folder = fn0.substring(0, fn0.indexOf("/")) || "default";
 
+    const fnthumb = fn + ".jpg";
     const jpg = await Deno.readFile(fn);
-    const imgdata = JPEG.decode(jpg, { maxResolutionInMP: 1000, maxMemoryUsageInMB: 1000 });
+    let size = null;
+    if (!await existsFile(fnthumb)) {
+      const imgdata = JPEG.decode(jpg, { maxResolutionInMP: 1000, maxMemoryUsageInMB: 1000 });
 
-    const imgdata2 = resizeImageData(imgdata, 320);
-    const jpg2 = JPEG.encode(imgdata2, 90);
-    await Deno.writeFile(fn + ".jpg", jpg2);
+      const imgdata2 = resizeImageData(imgdata, 320);
+      const jpg2 = JPEG.encode(imgdata2, 90);
+      await Deno.writeFile(fnthumb, jpg2);
+      size = { width: imgdata.width, height: imgdata.height };
+    } else {
+      const exif = EXIF.readFromBinaryFile(jpg);
+      size = { width: exif.PixelXDimension, height: exif.PixelYDimension };
+    }
 
     const date = await getFileCreated(fn);
     list.push({
@@ -82,8 +92,8 @@ for (const fn0 of fns) {
       thumbnail: fn + ".jpg",
       screen_type: type,
       mode,
-      frame_width: imgdata.width,
-      frame_height: imgdata.height,
+      frame_width: size.width,
+      frame_height: size.height,
       date: date,
       epoch: 0,
     });
