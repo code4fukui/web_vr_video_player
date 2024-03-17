@@ -613,14 +613,14 @@ function onWindowResize() {
 let gamepadAxisActive = false;
 export let playbackIsActive = false;
 
-export function playbackChange(is_active = false, screen_type = null) {
+export function playbackChange(is_active = false, screen_type = null, mode) {
     switch (is_active) {
         case true:
             playbackIsActive = true;
             showMeshes3D();
             if (screen_type !== null) {
                 ScreenManager.switchModeVRScreen(screen_type);
-                ScreenManager.switch2d3d("3d");
+                ScreenManager.switch2d3d(mode);
             }
             playMenuPanel.buttonPlay.playbackStarted();
             /*

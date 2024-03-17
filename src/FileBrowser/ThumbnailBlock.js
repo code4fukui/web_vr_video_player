@@ -10,6 +10,7 @@ export default class ThumbnailBlock extends Block {
     fileNameButton;
     fileThumbnail;
     screen_type;
+    mode;
     shouldVerifyVideoSRC = false;
 
     constructor(
@@ -18,6 +19,7 @@ export default class ThumbnailBlock extends Block {
         fileNameButton,
         fileThumbnail,
         screen_type,
+        mode,
         frame_height,
         frame_width,
         selectedAttributes,
@@ -31,6 +33,7 @@ export default class ThumbnailBlock extends Block {
         this.fileNameButton = fileNameButton;
         this.fileThumbnail = fileThumbnail;
         this.screen_type = screen_type;
+        this.mode = mode;
         this.frame_height = frame_height;
         this.frame_width = frame_width;
         this.shouldVerifyVideoSRC = shouldVerifyVideoSRC;
@@ -47,7 +50,7 @@ export default class ThumbnailBlock extends Block {
                                 this.frame_width / this.frame_height
                             );
                         Helpers.setVideoSrc(this.fileSRC);
-                        fileBrowserPanel.hideFileMenuPanel(this.screen_type);
+                        fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
                     } else {
                         MAIN.showPopupMessage(
                             Helpers.getWordFromLang("video_not_found")
@@ -65,7 +68,7 @@ export default class ThumbnailBlock extends Block {
                             this.frame_width / this.frame_height
                         );
                     Helpers.setVideoSrc(this.fileSRC);
-                    fileBrowserPanel.hideFileMenuPanel(this.screen_type);
+                    fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
                 },
             });
         }
