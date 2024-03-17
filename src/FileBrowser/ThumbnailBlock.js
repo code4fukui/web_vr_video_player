@@ -1,7 +1,8 @@
 import { Block } from "three-mesh-ui";
 
 import * as Helpers from "../Helpers.js";
-import { fileBrowserPanel } from "../index.js";
+import { fileBrowserPanel, material, videoTexture } from "../index.js";
+import * as THREE from "three";
 
 import * as MAIN from "../index.js";
 
@@ -28,6 +29,7 @@ export default class ThumbnailBlock extends Block {
         shouldVerifyVideoSRC = false
     ) {
         super(options);
+        console.log("t", fileSRC)
 
         this.fileSRC = fileSRC;
         this.fileNameButton = fileNameButton;
@@ -38,6 +40,21 @@ export default class ThumbnailBlock extends Block {
         this.frame_width = frame_width;
         this.shouldVerifyVideoSRC = shouldVerifyVideoSRC;
 
+        const play = () => {
+            if (screen_type === "screen") {
+                MAIN.scaleScreenMesh(this.frame_width / this.frame_height);
+            }
+            const src = this.fileSRC;
+            if (src.endsWith(".jpg")) {
+                Helpers.removeVideoSrc();
+                const texture = new THREE.TextureLoader().load(src);
+                material.map = texture;
+            } else {
+                material.map = videoTexture;
+                Helpers.setVideoSrc(src);
+            }
+            fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
+        };
         if (this.shouldVerifyVideoSRC) {
             this.setupState({
                 state: "selected",
@@ -45,12 +62,7 @@ export default class ThumbnailBlock extends Block {
                 onSet: () => {
                     const response = Helpers.testIfFileExist(this.fileSRC);
                     if (response) {
-                        if (screen_type === "screen")
-                            MAIN.scaleScreenMesh(
-                                this.frame_width / this.frame_height
-                            );
-                        Helpers.setVideoSrc(this.fileSRC);
-                        fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
+                        play();
                     } else {
                         MAIN.showPopupMessage(
                             Helpers.getWordFromLang("video_not_found")
@@ -63,12 +75,7 @@ export default class ThumbnailBlock extends Block {
                 state: "selected",
                 attributes: selectedAttributes,
                 onSet: () => {
-                    if (screen_type === "screen")
-                        MAIN.scaleScreenMesh(
-                            this.frame_width / this.frame_height
-                        );
-                    Helpers.setVideoSrc(this.fileSRC);
-                    fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
+                    play();
                 },
             });
         }
