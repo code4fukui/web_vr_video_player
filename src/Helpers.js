@@ -1,4 +1,6 @@
 import { loadResources } from "./loadResources.js";
+import * as THREE from "three";
+import { material, videoTexture } from "./index.js";
 
 let video_src = document.getElementById("video_src");
 
@@ -7,7 +9,15 @@ await loadResources({ LANG: "./src/lang.json" });
 
 let selected_lang = "en";
 
+let texturesrc = null;
+
+export function imageSrcExists() {
+    return texturesrc && texturesrc.endsWith(".jpg");
+};
+
 export function videoSrcExists() {
+    return true;
+    /*
     if (
         typeof video_src !== "undefined" &&
         video_src.src != window.location.href
@@ -15,16 +25,27 @@ export function videoSrcExists() {
         return true;
     }
     return false;
+    */
 }
 
+
 export function setVideoSrc(src) {
-    video_src.setAttribute("src", src);
-    video_src.setAttribute("type", "video/mp4");
-    const video = document.getElementById("video");
-    video.load();
-    video.play().catch((e) => {
-        console.warn(e);
-    });
+    texturesrc = src;
+    if (src.toLowerCase().endsWith(".jpg")) {
+        removeVideoSrc();
+        const texture = new THREE.TextureLoader().load(src);
+        material.map = texture;
+    } else {
+        material.map = videoTexture;
+        removeVideoSrc();
+        video_src.setAttribute("src", src);
+        video_src.setAttribute("type", "video/mp4");
+        const video = document.getElementById("video");
+        video.load();
+        video.play().catch((e) => {
+            console.warn(e);
+        });
+    }
 }
 
 export function removeVideoSrc() {

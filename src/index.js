@@ -30,6 +30,7 @@ export let scene,
     video,
     video_src,
     videoTexture,
+    material,
     meshLeftSBS,
     meshLeftTB,
     meshRightSBS,
@@ -149,7 +150,7 @@ function init() {
     video = document.getElementById("video");
 
     videoTexture = new THREE.VideoTexture(video);
-    const material = new THREE.MeshBasicMaterial({ map: videoTexture });
+    material = new THREE.MeshBasicMaterial({ map: videoTexture });
 
     // screen mode
     {
@@ -555,7 +556,8 @@ function init() {
     //
     // FILES
 
-    fileBrowserPanel = new FileBrowserPanel({}, true);
+    const shouldVerifyVideoSRC = false;
+    fileBrowserPanel = new FileBrowserPanel({}, shouldVerifyVideoSRC);
     sourcesSelectorPanel = new SourcesSelectorPanel(Extensions.registered);
 
     //

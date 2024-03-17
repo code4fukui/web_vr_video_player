@@ -1,9 +1,6 @@
 import { Block } from "three-mesh-ui";
 
 import * as Helpers from "../Helpers.js";
-import { fileBrowserPanel, material, videoTexture } from "../index.js";
-import * as THREE from "three";
-
 import * as MAIN from "../index.js";
 
 export default class ThumbnailBlock extends Block {
@@ -45,15 +42,8 @@ export default class ThumbnailBlock extends Block {
                 MAIN.scaleScreenMesh(this.frame_width / this.frame_height);
             }
             const src = this.fileSRC;
-            if (src.endsWith(".jpg")) {
-                Helpers.removeVideoSrc();
-                const texture = new THREE.TextureLoader().load(src);
-                material.map = texture;
-            } else {
-                material.map = videoTexture;
-                Helpers.setVideoSrc(src);
-            }
-            fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
+            Helpers.setVideoSrc(src);
+            MAIN.fileBrowserPanel.hideFileMenuPanel(this.screen_type, this.mode);
         };
         if (this.shouldVerifyVideoSRC) {
             this.setupState({

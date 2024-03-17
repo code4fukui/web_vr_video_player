@@ -1154,6 +1154,11 @@ export class PlayerPanel {
     videoCantEndBug = false;
 
     progressBarAndDuration() {
+        if (Helpers.imageSrcExists()) {
+            this.progressBar.set({ width: 0 });
+            this.playbackLabelContainer.set({ content: "- / -" });
+            return;
+        }
         if (Helpers.videoSrcExists()) {
             if (MAIN.hiddenSphere.buttonsVisible) {
                 let progressBarLength =
