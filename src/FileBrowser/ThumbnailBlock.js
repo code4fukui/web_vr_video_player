@@ -26,7 +26,6 @@ export default class ThumbnailBlock extends Block {
         shouldVerifyVideoSRC = false
     ) {
         super(options);
-        console.log("t", fileSRC)
 
         this.fileSRC = fileSRC;
         this.fileNameButton = fileNameButton;
