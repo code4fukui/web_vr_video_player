@@ -68,7 +68,7 @@ for (const fn0 of fns) {
     const folder = fn0.substring(0, fn0.indexOf("/")) || "default";
 
     const jpg = await Deno.readFile(fn);
-    const imgdata = JPEG.decode(jpg);
+    const imgdata = JPEG.decode(jpg, { maxResolutionInMP: 1000, maxMemoryUsageInMB: 1000 });
 
     const imgdata2 = resizeImageData(imgdata, 320);
     const jpg2 = JPEG.encode(imgdata2, 90);
