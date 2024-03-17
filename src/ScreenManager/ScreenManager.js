@@ -64,7 +64,7 @@ export function zoom(in_or_out, step = 10) {
             }
             break;
         case "out":
-            if (currentZoom > 0) {
+            if (currentZoom > -180) {
                 currentZoom -= step;
                 distance = step;
             }
@@ -81,9 +81,7 @@ export function zoom(in_or_out, step = 10) {
                 const temp = panels.meshes.panels
                     .find((element) => element.ui_name === mesh)
                     .position.clone();
-                if (currentZoom > 0) {
-                    temp.z += currentZoom;
-                }
+                temp.z += currentZoom;
                 temp.applyEuler(MAIN.meshes[mesh].rotation);
                 MAIN.meshes[mesh].position.copy(temp);
             } else {
