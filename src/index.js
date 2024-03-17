@@ -147,7 +147,6 @@ function init() {
     /////////
 
     video = document.getElementById("video");
-    video.loop = true;
 
     videoTexture = new THREE.VideoTexture(video);
     const material = new THREE.MeshBasicMaterial({ map: videoTexture });

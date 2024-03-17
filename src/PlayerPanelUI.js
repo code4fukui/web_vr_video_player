@@ -1183,6 +1183,8 @@ export class PlayerPanel {
                     });
                 }
             }
+            
+            const loopmode = true;
 
             if (MAIN.video.ended == false) {
                 // Some videos can't stop playing, meaning they almost reach the end eg. video.duration: 51.985691 but when video reaches end video.currentTime is 51.98569
@@ -1192,10 +1194,14 @@ export class PlayerPanel {
                     99.9999
                 ) {
                     if (this.videoCantEndBug) {
-                        MAIN.video.pause();
-                        MAIN.video.currentTime += 10;
-                        this.buttonPlay.remove(this.pauseIconElement);
-                        this.buttonPlay.add(this.playIconElement);
+                        if (loopmode) {
+                            MAIN.video.currentTime = 0;
+                        } else {
+                            MAIN.video.pause();
+                            MAIN.video.currentTime += 10;
+                            this.buttonPlay.remove(this.pauseIconElement);
+                            this.buttonPlay.add(this.playIconElement);
+                        }
                         this.videoCantEndBug = false;
                     } else {
                         this.videoCantEndBug = true;
@@ -1203,8 +1209,12 @@ export class PlayerPanel {
                 }
             } else {
                 this.videoCantEndBug = false;
-                this.buttonPlay.remove(this.pauseIconElement);
-                this.buttonPlay.add(this.playIconElement);
+                if (loopmode) {
+                    MAIN.video.currentTime = 0;
+                } else {
+                    this.buttonPlay.remove(this.pauseIconElement);
+                    this.buttonPlay.add(this.playIconElement);
+                }
             }
         }
     }
