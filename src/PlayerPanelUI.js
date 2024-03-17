@@ -1186,13 +1186,12 @@ export class PlayerPanel {
             
             const loopmode = true;
 
-            if (MAIN.video.ended == false) {
+            //if (MAIN.video.ended == false) {
+            if (true) {
                 // Some videos can't stop playing, meaning they almost reach the end eg. video.duration: 51.985691 but when video reaches end video.currentTime is 51.98569
                 // almost the end but playback can't end by itself which causes screen to flip between few last frames
-                if (
-                    (MAIN.video.currentTime * 100) / MAIN.video.duration >
-                    99.9999
-                ) {
+                //if ((MAIN.video.currentTime * 100) / MAIN.video.duration > 99.9999) {
+                if (MAIN.video.currentTime / MAIN.video.duration > .95) {
                     if (this.videoCantEndBug) {
                         if (loopmode) {
                             MAIN.video.currentTime = 0;
