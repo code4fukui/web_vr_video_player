@@ -81,7 +81,10 @@ for (const fn0 of fns) {
       size = { width: imgdata.width, height: imgdata.height };
     } else {
       const exif = EXIF.readFromBinaryFile(jpg);
-      size = { width: exif.PixelXDimension, height: exif.PixelYDimension };
+      size = {
+        width: exif.PixelXDimension || exif.ImageWidth,
+        height: exif.PixelYDimension || exif.ImageHeight,
+      };
     }
 
     const date = await getFileCreated(fn);
