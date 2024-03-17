@@ -1192,7 +1192,7 @@ export class PlayerPanel {
                 // almost the end but playback can't end by itself which causes screen to flip between few last frames
                 //if ((MAIN.video.currentTime * 100) / MAIN.video.duration > 99.9999) {
                 //if (MAIN.video.currentTime / MAIN.video.duration > .999) {
-                if (MAIN.video.duration - MAIN.video.currentTime < .01) {
+                if (MAIN.video.duration - MAIN.video.currentTime < .05) {
                     if (this.videoCantEndBug) {
                         if (loopmode) {
                             MAIN.video.currentTime = 0;
