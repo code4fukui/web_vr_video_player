@@ -30,8 +30,9 @@ export let scene,
     video,
     video_src,
     videoTexture,
-    material,
-    meshLeftSBS,
+    material;
+
+let meshLeftSBS,
     meshLeftTB,
     meshRightSBS,
     meshRightTB,
@@ -43,6 +44,8 @@ export let scene,
     meshes,
     meshLeft360,
     meshRight360,
+    meshLeftDualFisheye,
+    meshRightDualFisheye,
     //mesh2d360,
     mesh1802D,
     mesh3602D;
@@ -188,6 +191,64 @@ function init() {
         meshRightScreen.visible = false;
         meshRightScreen.position.setZ(-120);
         scene.add(meshRightScreen);
+    }
+
+    // Dual Fisheye df180
+    {
+        const scale = 2;
+        const reverse = true;
+        const left = reverse ? 2 : 1;
+        const scalex = 2.1;
+        const scaley = scale * 1.366 / 1.024;
+
+        for (let i = 1; i <= 2; i++) {
+            // radius, widthseg, heightseg, phiStart, phiLength, thetaStart, thetaLength
+            const geometry = new THREE.SphereGeometry(scale / 2, 36, 12, 0, Math.PI * 2, 0, Math.PI / 2);
+            // adjust texture
+            const uvs = geometry.attributes.uv.array;
+            const pos = geometry.attributes.position.array;
+            for (let j = 0; j < uvs.length / 2; j++) {
+                uvs[j * 2] = pos[j * 3 + 0] / scalex + 0.5 + (i == 1 ? 0.02 : -0.02);
+                uvs[j * 2 + 1] = pos[j * 3 + 2] / scaley + 0.5;
+            }
+            
+            if (i == left) {
+                for (let j = 0; j < uvs.length; j += 2) {
+                    uvs[j] *= 0.5;
+                }
+            } else {
+                for (let j = 0; j < uvs.length; j += 2) {
+                    uvs[j] = uvs[j] * 0.5 + 0.5;
+                }
+            }
+            /*
+            const material = new THREE.MeshBasicMaterial({
+                map: texture,
+                side: THREE.BackSide,
+                wireframe,
+            });
+            */
+            //const material = new THREE.MeshToonMaterial({ color: 0x6699FF }) 
+            const plane = new THREE.Mesh(geometry, material);
+
+            // planeの配置
+            plane.layers.set(i); // display in left/right eye only
+            //plane.layers.set(i == 1 ? 2 : 1); // display in left/right eye only
+            //plane.rotation.z = Math.PI / 2;
+            plane.rotation.x = Math.PI / 2;
+            plane.rotation.y = Math.PI;
+            plane.rotation.z = Math.PI;
+            plane.position.x = 0;
+            plane.position.y = 0;
+            plane.position.z = -1;
+
+            if (i == left) {
+                meshLeftDualFisheye = plane;
+            } else {
+                meshRightDualFisheye = plane;
+            }
+            scene.add(plane);
+        }
     }
 
     /////// EYES
@@ -424,6 +485,22 @@ function init() {
         "sphere360",
         "both"
     );
+    ScreenManager.registerMeshPanel(
+        meshLeftDualFisheye,
+        "meshDualFisheye",
+        "meshDualFisheye",
+        "3d",
+        "sphere180df",
+        "left"
+    );
+    ScreenManager.registerMeshPanel(
+        meshRightDualFisheye,
+        "meshDualFisheye",
+        "meshDualFisheye",
+        "3d",
+        "sphere180df",
+        "right"
+    );
     // register for recenter
     ScreenManager.registerObjectToDrag(meshLeftSBS, "player", "meshes");
     ScreenManager.registerObjectToDrag(meshLeftTB, "player", "meshes");
@@ -439,6 +516,8 @@ function init() {
     //ScreenManager.registerObjectToDrag(mesh2d360, "player", "meshes");
     ScreenManager.registerObjectToDrag(mesh1802D, "player", "meshes");
     ScreenManager.registerObjectToDrag(mesh3602D, "player", "meshes");
+    ScreenManager.registerObjectToDrag(meshLeftDualFisheye, "player", "meshes");
+    ScreenManager.registerObjectToDrag(meshRightDualFisheye, "player", "meshes");
     meshes = {
         meshLeftSBS: meshLeftSBS,
         meshRightSBS: meshRightSBS,
@@ -454,6 +533,8 @@ function init() {
         //mesh2d360: mesh2d360,
         mesh1802D: mesh1802D,
         mesh3602D: mesh3602D,
+        meshLeftDualFisheye,
+        meshRightDualFisheye,
     };
 
     //////////

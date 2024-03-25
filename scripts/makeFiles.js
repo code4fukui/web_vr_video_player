@@ -14,6 +14,7 @@ const typemodes = {
   //"tb",
   "vr180": { type: "sphere180", mode: "3d" },
   "sphere180": { type: "sphere180", mode: "3d" },
+  "vr180df": { type: "sphere180df", mode: "3d" },
 
   "sphere360": { type: "sphere360", mode: "2d" },
   "360": { type: "sphere360", mode: "2d" },
