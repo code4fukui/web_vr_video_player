@@ -123,43 +123,11 @@ export function tilt(up_or_down) {
 // Switch between VR and Screen mode
 
 export function switchModeVRScreen(vr_or_screen) {
-    /*
-    if (!currently_3d) {
-        switch2d3d("3d", true);
-    }
-    */
     panels.meshes.panels.forEach((mesh) => {
         mesh.switchModeVRScreen(vr_or_screen);
     });
-    switch (vr_or_screen) {
-        /*
-        case "vr":
-        case "sbs":
-            isVRModeUsed = true;
-            VRMode = "sbs";
-            break;
-        case "tb":
-            isVRModeUsed = true;
-            VRMode = "tb";
-            break;
-        case "360":
-            isVRModeUsed = true;
-            VRMode = "360";
-            break;
-            */
-        case "sphere180":
-            VRMode = "sphere180";
-            isVRModeUsed = false;
-            break;
-        case "sphere360":
-            VRMode = "sphere360";
-            isVRModeUsed = false;
-            break;
-        case "screen":
-            VRMode = "screen";
-            isVRModeUsed = false;
-            break;
-    }
+    VRMode = vr_or_screen;
+    isVRModeUsed = false;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

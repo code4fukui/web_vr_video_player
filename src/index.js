@@ -30,9 +30,8 @@ export let scene,
     video,
     video_src,
     videoTexture,
-    material;
-
-let meshLeftSBS,
+    material,
+    meshLeftSBS,
     meshLeftTB,
     meshRightSBS,
     meshRightTB,
@@ -153,7 +152,8 @@ function init() {
     video = document.getElementById("video");
 
     videoTexture = new THREE.VideoTexture(video);
-    material = new THREE.MeshBasicMaterial({ map: videoTexture });
+    //material = new THREE.MeshBasicMaterial({ map: videoTexture });
+    material = new THREE.MeshBasicMaterial({ map: videoTexture, side: THREE.DoubleSide });
 
     // screen mode
     {
@@ -195,10 +195,10 @@ function init() {
 
     // Dual Fisheye df180
     {
-        const scale = 2;
+        const scale = 10;
         const reverse = true;
         const left = reverse ? 2 : 1;
-        const scalex = 2.1;
+        const scalex = scale * 1.05;
         const scaley = scale * 1.366 / 1.024;
 
         for (let i = 1; i <= 2; i++) {
@@ -228,6 +228,11 @@ function init() {
                 wireframe,
             });
             */
+            /*
+            const material = new THREE.MeshBasicMaterial({
+                wireframe: true,
+            });
+            */
             //const material = new THREE.MeshToonMaterial({ color: 0x6699FF }) 
             const plane = new THREE.Mesh(geometry, material);
 
@@ -240,13 +245,14 @@ function init() {
             plane.rotation.z = Math.PI;
             plane.position.x = 0;
             plane.position.y = 0;
-            plane.position.z = -1;
+            plane.position.z = 0;
 
             if (i == left) {
                 meshLeftDualFisheye = plane;
             } else {
                 meshRightDualFisheye = plane;
             }
+            plane.visible = false;
             scene.add(plane);
         }
     }
@@ -487,16 +493,16 @@ function init() {
     );
     ScreenManager.registerMeshPanel(
         meshLeftDualFisheye,
-        "meshDualFisheye",
-        "meshDualFisheye",
+        "meshLeftDualFisheye",
+        "meshLeftDualFisheye",
         "3d",
         "sphere180df",
         "left"
     );
     ScreenManager.registerMeshPanel(
         meshRightDualFisheye,
-        "meshDualFisheye",
-        "meshDualFisheye",
+        "meshRightDualFisheye",
+        "meshRightDualFisheye",
         "3d",
         "sphere180df",
         "right"
