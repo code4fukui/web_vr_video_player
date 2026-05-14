@@ -1,5 +1,7 @@
 # Web VR video player for 180° videos.
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 ## Licenses
 
 ### Source code Licensed under MIT License
